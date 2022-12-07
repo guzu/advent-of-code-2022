@@ -44,11 +44,8 @@ name = "day5-p3"
 path = "src/day5/main-p3.rs"
 
 [[bin]]
-name = "day6-p1"
-path = "src/day6/main-p1.rs"
-[[bin]]
-name = "day6-p2"
-path = "src/day6/main-p2.rs"
+name = "day6"
+path = "src/day6/main.rs"
 
 [[bin]]
 name = "day7-p1"
@@ -58,7 +55,10 @@ name = "day7-p2"
 path = "src/day7/main-p2.rs"
 
 [features]
+default = [ "part2" ]
 print-tree = []
+part1 = []
+part2 = []
 
 [dependencies]
 itertools = "0.8.0"

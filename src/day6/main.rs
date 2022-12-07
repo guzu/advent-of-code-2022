@@ -3,13 +3,18 @@ use std::io::{self, BufRead};
 use std::path::Path;
 use itertools::Itertools;
 
+#[cfg(feature = "part1")]
+const SIZE: usize = 4;
+#[cfg(feature = "part2")]
+const SIZE: usize = 14;
+
 fn main() {
     let lines = read_lines("./src/day6/input.txt").unwrap();
 
     for l in lines {
         let a = l.unwrap();
         let mut n : usize = 0;
-        let size = 14 as usize;
+        let size = SIZE;
 
         while a[n..n+size].chars().unique().count() < size {
             n += 1;
