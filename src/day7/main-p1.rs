@@ -55,13 +55,8 @@ fn main() {
         }
     }
 
-    let mut total = 0u32;
-    for s in sizes {
-        if s < 100_000 {
-            total += s;
-        }
-    }
-    println!("answer : {}", total);
+    println!("answer : {}",
+             sizes.iter().fold(0, |t,s| if *s < 100_000 { t + s } else { t }));
 }
 
 fn read_lines<P>(filename: P) -> io::Result<io::Lines<io::BufReader<File>>>
