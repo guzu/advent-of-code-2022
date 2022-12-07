@@ -1,0 +1,8 @@
+#!/bin/sh
+
+if git log --format="%ae" | grep -Fqv "@guzu.net"; then
+	echo "ERROR: found non @guzu.net author email address !"
+	exit 123
+fi
+
+exit 0
