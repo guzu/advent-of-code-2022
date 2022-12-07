@@ -57,5 +57,8 @@ path = "src/day7/main-p1.rs"
 name = "day7-p2"
 path = "src/day7/main-p2.rs"
 
+[features]
+print-tree = []
+
 [dependencies]
 itertools = "0.8.0"

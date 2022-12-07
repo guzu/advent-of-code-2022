@@ -3,9 +3,19 @@ use std::io::{self, BufRead};
 use std::path::Path;
 //use itertools::Itertools;
 
+#[cfg(feature = "print-tree")]
+fn print_item(str : String) {
+    println!("{}", str);
+
+}
+#[cfg(not(feature = "print-tree"))]
+fn print_item(_str: String) {
+    //
+}
+
 fn main() {
     let lines = read_lines("./src/day7/input.txt").unwrap();
-    let mut _indent = String::from("");
+    let mut indent = String::from("");
     let mut stack = vec![0];
     let mut sizes = Vec::<u32>::new();
 
@@ -18,14 +28,17 @@ fn main() {
 
         if ln.starts_with("$") {
             if ln.starts_with("$ cd ..") {
-                //println!("change directory : going down : size {}", stack[0]);
                 stack[1] += stack[0];
                 sizes.push(stack[0]);
                 stack.remove(0);
+                indent.pop();
+                indent.pop();
             }
-            else if ln.starts_with("$ cd") {
-                //println!("change directory : going up ({})", ln);
+            else if ln.starts_with("$ cd ") {
                 stack.insert(0,0);
+                let sp : Vec<&str> = ln.split(" ").collect();
+                print_item(format!("{}- {} (dir)", indent, sp[2]));
+                indent += "  ";
             }
             else if ln.starts_with("$ ls") {
                 // do nothing
@@ -36,7 +49,7 @@ fn main() {
 
             if sp[0] != "dir" {
                 let size = sp[0].parse::<u32>().unwrap();
-                //println!("{} + {}", stack[0], size);
+                print_item(format!("{}- {} (file, size: {})", indent, sp[1], size));
                 stack[0] += size;
             }
         }
