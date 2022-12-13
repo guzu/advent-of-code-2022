@@ -72,6 +72,13 @@ path = "src/day10/main-p1.rs"
 name = "day10-p2"
 path = "src/day10/main-p2.rs"
 
+[[bin]]
+name = "day11-p1"
+path = "src/day11/main-p1.rs"
+[[bin]]
+name = "day11-p2"
+path = "src/day11/main-p2.rs"
+
 [features]
 default = [ "part2" ]
 print-tree = []
@@ -80,3 +87,4 @@ part2 = []
 
 [dependencies]
 itertools = "0.8.0"
+num = "0.4.0"
