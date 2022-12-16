@@ -6,7 +6,12 @@ pub enum Item {
     SubList(Vec<Item>)
 }
 
-pub fn parse(s: &str, i: &mut usize) -> Vec<Item> {
+pub fn parse(s: &str) -> Vec<Item> {
+    let mut i : usize = 0;
+    parse_r(s, &mut i)
+}
+
+fn parse_r(s: &str, i: &mut usize) -> Vec<Item> {
     let mut num = String::new();
     let mut list = Vec::<Item>::new();
 
@@ -26,7 +31,7 @@ pub fn parse(s: &str, i: &mut usize) -> Vec<Item> {
             '[' if *i == 0 => (),
             '[' if *i > 0 => {
                     *i += 1;
-                    let sublist = parse(s, i);
+                    let sublist = parse_r(s, i);
                     list.push(Item::SubList(sublist));
                 },
             ']' => {

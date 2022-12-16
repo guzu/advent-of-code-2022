@@ -15,11 +15,8 @@ fn main() {
 
     while let Some(l1) = lines.next() {
         if let Some(l2) = lines.next() {
-            let mut i : usize;
-            i = 0;
-            let list1 = day13::parse(&l1.unwrap(), &mut i);
-            i = 0;
-            let list2 = day13::parse(&l2.unwrap(), &mut i);
+            let list1 = day13::parse(&l1.unwrap());
+            let list2 = day13::parse(&l2.unwrap());
 
             packets.push(list1);
             packets.push(list2);
