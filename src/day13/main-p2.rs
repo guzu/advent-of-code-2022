@@ -28,7 +28,6 @@ fn main() {
 
     packets.sort_by(|l1, l2| day13::compare(l1, l2));
 
-    let mut answer = 1;
     let divider_match = |l : &Vec<day13::Item>| {
         l.len() == 1 && match l.iter().next() {
             Some(day13::Item::SubList(sl)) => match sl.iter().next() {
@@ -38,12 +37,9 @@ fn main() {
         _ => false,
         }
     };
-    for (i, l) in packets.iter().enumerate() {
-        if divider_match(l) {
-            answer *= i + 1;
-        }
-
-    }
+    let answer = packets.into_iter().enumerate()
+        .fold(1, |n, x| 
+            if divider_match(&x.1) { n * (x.0 + 1) } else { n });
     println!("answer: {}", answer);
     assert_eq!(answer, 21836);
 }
