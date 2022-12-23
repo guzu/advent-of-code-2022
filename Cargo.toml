@@ -118,6 +118,13 @@ path = "src/day20/main-p1.rs"
 name = "day20-p2"
 path = "src/day20/main-p2.rs"
 
+[[bin]]
+name = "day21-p1"
+path = "src/day21/main-p1.rs"
+[[bin]]
+name = "day21-p2"
+path = "src/day21/main-p2.rs"
+
 [features]
 default = [ "part2" ]
 print-tree = []
